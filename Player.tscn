@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqds2uum1x2aq"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://57ea20b3glou" path="res://sprites/player/king_stickman_idle.PNG" id="2"]
+[ext_resource type="Texture2D" uid="uid://bj0j5y538b50d" path="res://sprites/player/king_stickman_walk_3.PNG" id="3"]
+[ext_resource type="Texture2D" uid="uid://gbymx2nxsxca" path="res://sprites/player/king_stickman_walk_1.PNG" id="4"]
+[ext_resource type="Texture2D" uid="uid://bwxw48kx0yy8j" path="res://sprites/player/king_stickman_walk_2.PNG" id="5"]
+[ext_resource type="Script" path="res://Sightline.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://bi0t4a6js54lk" path="res://sprites/player/sightdot.png" id="7"]
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(65, 96)
+
+[node name="Player" type="Area2D"]
+scale = Vector2(0.4, 0.4)
+collision_mask = 28
+script = ExtResource("1")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("1")
+animation = &"walk"
+frame_progress = 0.161297
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("2")
+
+[node name="Sightline" type="Line2D" parent="."]
+position = Vector2(2.5, 2.5)
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(1, 1, 1, 0)
+script = ExtResource("6")
+
+[node name="Sightdot" type="Sprite2D" parent="Sightline"]
+visible = false
+modulate = Color(1, 1, 1, 0.541176)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7")
+
+[node name="LeftHand" type="Node2D" parent="."]
+position = Vector2(87.5, 5)
+
+[node name="RightHand" type="Node2D" parent="."]
+position = Vector2(-87.5, 5)

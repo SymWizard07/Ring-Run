@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://nib2j5upd77w"]
+
+[ext_resource type="Texture2D" uid="uid://d24phhtgqr756" path="res://sprites/effects/melee_slash/melee_slash_0.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bovdejnovous3" path="res://sprites/effects/melee_slash/melee_slash_3.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cv7lnbo2i8xew" path="res://sprites/effects/melee_slash/melee_slash_2.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://8ph6xukqn8ha" path="res://sprites/effects/melee_slash/melee_slash_4.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://jr4tuaov2ljx" path="res://sprites/effects/melee_slash/melee_slash_1.png" id="5"]
+[ext_resource type="Script" path="res://Melee Hit.gd" id="6"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(32, 12.5)
+
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
+"loop": true,
+"name": &"slash",
+"speed": 16.0
+}]
+
+[node name="Melee Hit" type="Area2D"]
+scale = Vector2(4, 4)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.25)
+shape = SubResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("2")
+animation = &"slash"
+frame_progress = 0.553644
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
