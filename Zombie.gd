@@ -16,7 +16,7 @@ var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$AnimatedSprite2D.play("walk")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,7 +35,7 @@ func _process(delta):
 	if velocity.length() > 0 && hurt_time <= 0:
 		velocity = (velocity + velocity_offset).normalized() * speed
 		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_h = velocity.x > 0
+		$AnimatedSprite2D.flip_h = velocity.x < 0
 	
 	position += velocity * delta
 

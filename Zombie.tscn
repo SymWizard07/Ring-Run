@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3xbuhyad1haf"]
+[gd_scene format=3 uid="uid://d3xbuhyad1haf"]
 
-[ext_resource type="Script" path="res://Zombie.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://ch7ch23a1i08v" path="res://sprites/zombie/IMG_3178.PNG" id="2"]
-[ext_resource type="Texture2D" uid="uid://1wqee4e1i5bc" path="res://sprites/zombie/IMG_3176.PNG" id="3"]
+[ext_resource type="Script" uid="uid://8vjnqoc0d3ig" path="res://Zombie.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://7fatfh8s1orm" path="res://sprites/zombie/Zombie1.png" id="2_vrb4v"]
+[ext_resource type="Texture2D" uid="uid://x88d5jvenx3s" path="res://sprites/zombie/Zombie2.png" id="3_ykpkj"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(52.25, 84)
@@ -11,32 +11,32 @@ size = Vector2(52.25, 84)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3")
+"texture": ExtResource("3_ykpkj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2")
+"texture": ExtResource("2_vrb4v")
 }],
 "loop": true,
 "name": &"walk",
 "speed": 5.0
 }]
 
-[node name="Zombie" type="Area2D"]
+[node name="Zombie" type="Area2D" unique_id=586505979]
 scale = Vector2(0.4, 0.4)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1592056703]
 position = Vector2(-7.62939e-06, 0)
 shape = SubResource("1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1775477121]
 position = Vector2(0, -2.02656e-06)
-scale = Vector2(0.2, 0.2)
+scale = Vector2(6, 6)
 sprite_frames = SubResource("2")
 animation = &"walk"
-frame = 1
+frame_progress = 0.5224051
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
