@@ -1,4 +1,4 @@
-extends Node2D
+class_name SwingAnimation extends Node2D
 
 
 @export var swing_speed = 0.5
@@ -6,6 +6,7 @@ var reset_delay = 0.8
 var reset_time = 0
 var desired_rot = 0
 var hand = "right"
+var done = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +16,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	rotation = lerp_angle(rotation, deg_to_rad(desired_rot), 0.1)
+	if is_equal_approx(rotation, deg_to_rad(desired_rot)):
+		done = true
+	else:
+		done = false
 	
 func set_hand(hand):
 	if hand == "right" && self.hand != "right":

@@ -1,10 +1,10 @@
-class_name Player extends Area2D
+extends Area2D
 
 signal hit
 
 var id = "Player"
 
-var Mace = preload("res://Mace.tscn")
+var Mace = preload("res://scenes/holdable/Mace.tscn")
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
@@ -16,15 +16,14 @@ var respawn_time_max = 0.6
 var hurt_time = 0.0
 var hurt_time_max = 0.1
 var hurt_speed = 800
-
-var weapon = Mace.instantiate()
+var weapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	set_weapon_hand("right")
+	weapon = Mace.instantiate()
 	add_child(weapon)
-
+	set_weapon_hand("right")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -65,8 +64,7 @@ func _process(delta):
 		set_weapon_hand("left")
 	
 	if Input.is_action_pressed("attack") && respawn_time <= 0:
-		weapon.get_node("MaceArea").spawn_melee_hit(self, $Sightline.get_aim_vector().normalized())
-		weapon.swing()
+		weapon.swing($Sightline.get_aim_vector().normalized())
 		respawn_time = respawn_time_max
 
 func get_weapon_accuracy():

@@ -1,6 +1,4 @@
-class_name MeleeHit extends Area2D
-
-var id = "MeleeHit"
+extends Area2D
 
 var speed = 0
 var player_created = true
@@ -17,6 +15,5 @@ func _process(delta):
 
 
 func _on_area_entered(area):
-	match area.id:
-		"Zombie":
-			area.hurt(2)
+	if area.is_in_group("Enemy"):
+		area.hurt(2)

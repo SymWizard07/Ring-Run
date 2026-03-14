@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://diy7a061a6ye4"]
+
+[ext_resource type="Script" uid="uid://cqwek8khf6w74" path="res://scripts/spawners/weapon_projectile_spawner.gd" id="1_s6d0y"]
+[ext_resource type="PackedScene" uid="uid://bvtu47r5xi1ga" path="res://scenes/projectiles/projectile.tscn" id="2_gotxh"]
+
+[node name="WeaponProjectileSpawner" type="Node2D" unique_id=1736291829]
+script = ExtResource("1_s6d0y")
+projectile_scene = ExtResource("2_gotxh")
+
+[node name="SpawnLocation" type="Node2D" parent="." unique_id=222010826]

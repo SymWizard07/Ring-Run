@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://d3xbuhyad1haf"]
 
-[ext_resource type="Script" uid="uid://8vjnqoc0d3ig" path="res://Zombie.gd" id="1"]
+[ext_resource type="Script" uid="uid://divhdhjeyxcca" path="res://scripts/enemies/zombie.gd" id="1_kav52"]
 [ext_resource type="Texture2D" uid="uid://7fatfh8s1orm" path="res://sprites/zombie/Zombie1.png" id="2_vrb4v"]
 [ext_resource type="Texture2D" uid="uid://x88d5jvenx3s" path="res://sprites/zombie/Zombie2.png" id="3_ykpkj"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(52.25, 84)
+size = Vector2(50.00001, 165)
 
 [sub_resource type="SpriteFrames" id="2"]
 animations = [{
@@ -21,22 +21,35 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Zombie" type="Area2D" unique_id=586505979]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kav52"]
+size = Vector2(63.125008, 60.937508)
+
+[node name="Zombie" type="Area2D" unique_id=586505979 groups=["Enemy"]]
 scale = Vector2(0.4, 0.4)
 collision_layer = 4
 collision_mask = 7
-script = ExtResource("1")
+script = ExtResource("1_kav52")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1592056703]
-position = Vector2(-7.62939e-06, 0)
+position = Vector2(-12.499995, 4.9999914)
+scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1775477121]
+y_sort_enabled = true
 position = Vector2(0, -2.02656e-06)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("2")
 animation = &"walk"
 frame_progress = 0.5224051
+
+[node name="SeparationArea" type="Area2D" parent="." unique_id=794277874]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeparationArea" unique_id=1444559448]
+position = Vector2(-12.499999, 52.5)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_kav52")
+debug_color = Color(0.82579565, 0.39811176, 0, 0.41960785)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c5v5dg6gk1nyf"]
+
+[ext_resource type="Texture2D" uid="uid://dpl7wm1dc1yrh" path="res://sprites/weapons/mace.PNG" id="1"]
+[ext_resource type="Script" uid="uid://fg2bbed2nmm2" path="res://scripts/held_items/weapon.gd" id="1_4nya1"]
+[ext_resource type="Script" uid="uid://ddqfa586k0o3k" path="res://scripts/held_items/swing_animation.gd" id="1_nlgxq"]
+[ext_resource type="PackedScene" uid="uid://diy7a061a6ye4" path="res://scenes/spawners/weapon_projectile_spawner.tscn" id="4_vx3fa"]
+[ext_resource type="Script" uid="uid://b8ag7ry4xoipl" path="res://resources/projectile_config.gd" id="5_fslk5"]
+[ext_resource type="SpriteFrames" uid="uid://dla243lemk5xf" path="res://sprites/effects/melee_slash/melee_slash.tres" id="6_0kgqx"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(56, 50)
+
+[sub_resource type="Curve" id="Curve_fslk5"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), 0.13646819, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="Resource" id="Resource_jocad"]
+script = ExtResource("5_fslk5")
+sprite_frames = ExtResource("6_0kgqx")
+sprite_rotation_offset = 90.0
+size = Vector2(20, 35)
+lifetime = 0.4
+velocity_curve = SubResource("Curve_fslk5")
+scale = Vector2(5, 5)
+can_damage = Array[String](["Enemy"])
+metadata/_custom_type_script = "uid://b8ag7ry4xoipl"
+
+[node name="Mace" type="Node2D" unique_id=1854599239]
+script = ExtResource("1_4nya1")
+metadata/_edit_group_ = true
+
+[node name="SwingAnimation" type="Node2D" parent="." unique_id=1035882696]
+script = ExtResource("1_nlgxq")
+
+[node name="MaceArea" type="Area2D" parent="SwingAnimation" unique_id=1993350486]
+position = Vector2(-25, -22)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="SwingAnimation/MaceArea" unique_id=1663154400]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwingAnimation/MaceArea" unique_id=371793781]
+position = Vector2(0, 0.5)
+shape = SubResource("1")
+
+[node name="WeaponProjectileSpawner" parent="." unique_id=1736291829 instance=ExtResource("4_vx3fa")]
+projectile_config = SubResource("Resource_jocad")

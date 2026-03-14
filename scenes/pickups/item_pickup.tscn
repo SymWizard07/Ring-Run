@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://oeyq6x2ctsop"]
+
+[ext_resource type="Shader" uid="uid://dit0bwk6uxad3" path="res://shaders/bubble_halo.gdshader" id="1_iaepm"]
+[ext_resource type="Script" uid="uid://cssjmiylsjj6q" path="res://scripts/items/weapon_anchor.gd" id="2_515fx"]
+[ext_resource type="Texture2D" uid="uid://c64v4hf3bj7ys" path="res://sprites/weapons/Eternia.png" id="3_1teck"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hpx0b"]
+shader = ExtResource("1_iaepm")
+shader_parameter/bubble_color = Color(1, 0.88, 0.45, 1)
+shader_parameter/edge_strength = 2.5
+shader_parameter/alpha_strength = 0.45
+shader_parameter/highlight_strength = 0.35
+shader_parameter/highlight_offset = Vector2(-0.22, -0.22)
+shader_parameter/highlight_size = 0.22
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pdrhs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1teck"]
+
+[node name="ItemPickup" type="Node2D" unique_id=539708964]
+scale = Vector2(4, 4)
+
+[node name="EffectHalo" type="Sprite2D" parent="." unique_id=329116661]
+material = SubResource("ShaderMaterial_hpx0b")
+scale = Vector2(20, 20)
+texture = SubResource("CanvasTexture_pdrhs")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=701271313]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=79129711]
+visible = false
+shape = SubResource("CircleShape2D_1teck")
+
+[node name="ItemAnchor" type="Node2D" parent="." unique_id=546212451]
+script = ExtResource("2_515fx")
+
+[node name="ItemSprite" type="Sprite2D" parent="ItemAnchor" unique_id=2142652120]
+position = Vector2(1, 1)
+scale = Vector2(0.535, 0.535)
+texture = ExtResource("3_1teck")

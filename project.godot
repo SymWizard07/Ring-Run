@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Ring Run"
-run/main_scene="res://Main.tscn"
+run/main_scene="uid://cpm5km1k6b0mt"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
 
@@ -23,6 +23,11 @@ config/icon="res://icon.png"
 
 window/size/mode=2
 window/stretch/mode="canvas_items"
+
+[global_group]
+
+Enemy=""
+Player=""
 
 [input]
 

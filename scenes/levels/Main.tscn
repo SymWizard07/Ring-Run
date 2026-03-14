@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cpm5km1k6b0mt"]
+
+[ext_resource type="PackedScene" uid="uid://cqds2uum1x2aq" path="res://scenes/player/Player.tscn" id="2"]
+[ext_resource type="Script" uid="uid://b1cu5kj0syjqf" path="res://scripts/spawners/zombie_spawner.gd" id="2_wplmo"]
+[ext_resource type="PackedScene" uid="uid://oeyq6x2ctsop" path="res://scenes/pickups/item_pickup.tscn" id="3_r0du0"]
+
+[node name="Main" type="Node2D" unique_id=1869995985]
+
+[node name="Player" parent="." unique_id=1676067615 instance=ExtResource("2")]
+position = Vector2(590, 334)
+
+[node name="ZombieSpawner" type="Node2D" parent="." unique_id=826407949]
+script = ExtResource("2_wplmo")
+
+[node name="ItemPickup" parent="." unique_id=539708964 instance=ExtResource("3_r0du0")]
+position = Vector2(804, 407)

@@ -1,6 +1,6 @@
 extends Node2D
 
-var Zombie = preload("res://Zombie.tscn")
+var Zombie = preload("res://scenes/enemies/Zombie.tscn")
 var viewport_size = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height"))
 
 @onready var player = get_parent().get_node("Player")
